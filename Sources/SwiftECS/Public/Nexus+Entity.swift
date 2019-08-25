@@ -20,6 +20,8 @@ public extension Nexus
         entityIdsPool.free(entity.identifier)
 
         for componentId in componentIdsByEntityId[entity.identifier] ?? [] {
+            assert(componentsByComponentIds[componentId]?.contains(entity.identifier.index) ?? false)
+
             componentsByComponentIds[componentId]
                 .unsafelyUnwrapped
                 .remove(for: entity.identifier.index)
