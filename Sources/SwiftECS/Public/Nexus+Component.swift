@@ -8,6 +8,9 @@
 public extension Nexus
 {
     func assign(_ component: Component, to entity: Entity) {
+        assert(componentsByComponentIDs[component.identifier]?.contains(entity.identifier.index) ?? false == false)
+        assert(componentIDsByEntityID[entity.identifier]?.contains(component.identifier) ?? false == false)
+
         componentsByComponentIDs[component.identifier, default: UnorderedSparseSet()]
             .insert(component, for: entity.identifier.index)
 
@@ -18,6 +21,9 @@ public extension Nexus
     }
 
     func remove(_ component: Component.Type, from entity: Entity) {
+        assert(componentsByComponentIDs[component.identifier]?.contains(entity.identifier.index) ?? false == true)
+        assert(componentIDsByEntityID[entity.identifier]?.contains(component.identifier) ?? false == true)
+
         componentsByComponentIDs[component.identifier]?
             .remove(for: entity.identifier.index)
 

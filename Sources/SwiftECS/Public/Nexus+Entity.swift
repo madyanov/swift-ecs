@@ -15,6 +15,8 @@ public extension Nexus
     }
 
     func removeEntity(_ entity: Entity) {
+        assert(componentIDsByEntityID[entity.identifier] != nil)
+
         entityIDsPool.free(entity.identifier)
 
         for componentID in componentIDsByEntityID[entity.identifier] ?? [] {

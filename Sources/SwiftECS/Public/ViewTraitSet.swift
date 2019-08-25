@@ -13,6 +13,8 @@ public struct ViewTraitSet
     public init(required: [Component.Type] = [], excluded: [Component.Type] = []) {
         self.required = Set(required.map { $0.identifier })
         self.excluded = Set(excluded.map { $0.identifier })
+
+        assert(!self.required.isEmpty && self.required.isDisjoint(with: self.excluded))
     }
 }
 
