@@ -5,7 +5,7 @@
 //  Created by Roman Madyanov on 24/08/2019.
 //
 
-struct EntityIdentifier
+public struct EntityIdentifier
 {
     let index: Int
 

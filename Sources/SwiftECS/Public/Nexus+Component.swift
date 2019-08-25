@@ -11,46 +11,46 @@ public extension Nexus
         return componentsByComponentIds.reduce(0) { $0 + $1.value.count }
     }
 
-    func assign(_ component: Component, to entity: Entity) {
-        assert(componentsByComponentIds[component.identifier]?.contains(entity.identifier.index) ?? false == false)
-        assert(componentIdsByEntityId[entity.identifier]?.contains(component.identifier) ?? false == false)
+    func assign(_ component: Component, to entityId: EntityIdentifier) {
+        assert(componentsByComponentIds[component.identifier]?.contains(entityId.index) ?? false == false)
+        assert(componentIdsByEntityId[entityId]?.contains(component.identifier) ?? false == false)
 
         componentsByComponentIds[component.identifier, default: UnorderedSparseSet()]
-            .insert(component, for: entity.identifier.index)
+            .insert(component, at: entityId.index)
 
-        componentIdsByEntityId[entity.identifier, default: Set()]
+        componentIdsByEntityId[entityId, default: Set()]
             .insert(component.identifier)
 
-        updateTraitsMembership(of: entity)
+        updateTraitsMembership(of: entityId)
     }
 
-    func remove(_ component: Component.Type, from entity: Entity) {
-        assert(componentsByComponentIds[component.identifier]?.contains(entity.identifier.index) ?? false)
-        assert(componentIdsByEntityId[entity.identifier]?.contains(component.identifier) ?? false)
+    func remove(_ component: Component.Type, from entityId: EntityIdentifier) {
+        assert(componentsByComponentIds[component.identifier]?.contains(entityId.index) ?? false)
+        assert(componentIdsByEntityId[entityId]?.contains(component.identifier) ?? false)
 
         componentsByComponentIds[component.identifier]?
-            .remove(for: entity.identifier.index)
+            .remove(at: entityId.index)
 
-        componentIdsByEntityId[entity.identifier]?
+        componentIdsByEntityId[entityId]?
             .remove(component.identifier)
 
-        updateTraitsMembership(of: entity)
+        updateTraitsMembership(of: entityId)
     }
 
-    func entity(_ entity: Entity, has component: Component.Type) -> Bool {
+    func entity(_ entityId: EntityIdentifier, has component: Component.Type) -> Bool {
         return componentsByComponentIds[component.identifier]?
-            .contains(entity.identifier.index) ?? false
+            .contains(entityId.index) ?? false
     }
 
-    func get<C: Component>(_ component: C.Type, of entity: Entity) -> C? {
+    func get<C: Component>(_ component: C.Type, of entityId: EntityIdentifier) -> C? {
         return componentsByComponentIds[component.identifier]?
-            .get(for: entity.identifier.index) as? C
+            .get(at: entityId.index) as? C
     }
 
-    func get<C: Component>(unsafe component: C.Type, of entity: Entity) -> C {
+    func get<C: Component>(unsafe component: C.Type, of entityId: EntityIdentifier) -> C {
         let component = componentsByComponentIds[component.identifier]
             .unsafelyUnwrapped
-            .get(unsafe: entity.identifier.index)
+            .get(unsafeAt: entityId.index)
 
         return unsafeDowncast(component, to: C.self)
     }
@@ -58,16 +58,16 @@ public extension Nexus
 
 private extension Nexus
 {
-    func updateTraitsMembership(of entity: Entity) {
-        guard let components = componentIdsByEntityId[entity.identifier] else {
+    func updateTraitsMembership(of entityId: EntityIdentifier) {
+        guard let components = componentIdsByEntityId[entityId] else {
             return
         }
 
-        entitiesByTraits.forEach { traits, entities in
+        entityIdsByTraits.forEach { traits, entities in
             if traits.match(components) {
-                entities.insert(entity, for: entity.identifier.index)
+                entities.insert(entityId, at: entityId.index)
             } else {
-                entities.remove(for: entity.identifier.index)
+                entities.remove(at: entityId.index)
             }
         }
     }

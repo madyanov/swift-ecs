@@ -9,7 +9,10 @@ public struct Entity
 {
     let identifier: EntityIdentifier
 
-    init(identifier: EntityIdentifier) {
+    private unowned let nexus: Nexus
+
+    init(nexus: Nexus, identifier: EntityIdentifier) {
+        self.nexus = nexus
         self.identifier = identifier
     }
 }

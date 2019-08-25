@@ -7,30 +7,42 @@
 
 public extension Nexus
 {
+    var numberOfEntities: Int {
+        return entityIds.count
+    }
+
     func makeEntity(with components: Component...) -> Entity {
         let identifier = entityIdsPool.take()
-        let entity = Entity(identifier: identifier)
-        components.forEach { assign($0, to: entity) }
+        let entity = Entity(nexus: self, identifier: identifier)
+
+        components.forEach {
+            assign($0, to: identifier)
+        }
+
+        entityIds.insert(identifier, at: identifier.index)
+
         return entity
     }
 
-    func removeEntity(_ entity: Entity) {
-        assert(componentIdsByEntityId[entity.identifier] != nil)
+    func removeEntity(_ entityId: EntityIdentifier) {
+        assert(entityIds.contains(entityId.index))
+        assert(componentIdsByEntityId[entityId] != nil)
 
-        entityIdsPool.free(entity.identifier)
+        entityIdsPool.free(entityId)
+        entityIds.remove(at: entityId.index)
 
-        for componentId in componentIdsByEntityId[entity.identifier] ?? [] {
-            assert(componentsByComponentIds[componentId]?.contains(entity.identifier.index) ?? false)
+        for componentId in componentIdsByEntityId[entityId] ?? [] {
+            assert(componentsByComponentIds[componentId]?.contains(entityId.index) ?? false)
 
             componentsByComponentIds[componentId]
                 .unsafelyUnwrapped
-                .remove(for: entity.identifier.index)
+                .remove(at: entityId.index)
         }
 
-        componentIdsByEntityId.removeValue(forKey: entity.identifier)
+        componentIdsByEntityId.removeValue(forKey: entityId)
 
-        for entities in entitiesByTraits.values {
-            entities.remove(for: entity.identifier.index)
+        for entities in entityIdsByTraits.values {
+            entities.remove(at: entityId.index)
         }
     }
 }

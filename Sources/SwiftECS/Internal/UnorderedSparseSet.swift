@@ -48,7 +48,7 @@ extension UnorderedSparseSet
     }
 
     @discardableResult
-    func insert(_ element: Element, for key: Key) -> Bool {
+    func insert(_ element: Element, at key: Key) -> Bool {
         // replace element if key already exists
         if let index = search(key) {
             elements[index] = element
@@ -70,7 +70,7 @@ extension UnorderedSparseSet
         return true
     }
 
-    func get(for key: Key) -> Element? {
+    func get(at key: Key) -> Element? {
         guard let index = search(key) else {
             return nil
         }
@@ -78,13 +78,13 @@ extension UnorderedSparseSet
         return elements[index]
     }
 
-    func get(unsafe key: Key) -> Element {
+    func get(unsafeAt key: Key) -> Element {
         let index = search(key).unsafelyUnwrapped
         return elements[index]
     }
 
     @discardableResult
-    func remove(for key: Key) -> Element? {
+    func remove(at key: Key) -> Element? {
         guard let index = search(key) else {
             return nil
         }
@@ -105,13 +105,6 @@ extension UnorderedSparseSet
         if !keepCapacity {
             reserveCapacity(minimumCapacity)
         }
-    }
-}
-
-extension UnorderedSparseSet: Sequence
-{
-    func makeIterator() -> IndexingIterator<ContiguousArray<Element>> {
-        return elements.makeIterator()
     }
 }
 
