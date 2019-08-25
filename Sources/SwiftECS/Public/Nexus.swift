@@ -7,8 +7,8 @@
 
 public final class Nexus
 {
-    let entityIDsPool = EntityIdentifiersPool()
-    var componentsByComponentIDs: [ComponentIdentifier: UnorderedSparseSet<Component>] = [:]
-    var componentIDsByEntityID: [EntityIdentifier: Set<ComponentIdentifier>] = [:]
+    let entityIdsPool = EntityIdentifiersPool()
+    var componentsByComponentIds: [ComponentIdentifier: UnorderedSparseSet<Component>] = [:]
+    var componentIdsByEntityId: [EntityIdentifier: Set<ComponentIdentifier>] = [:]
     var entitiesByTraits: [ViewTraitSet: UnorderedSparseSet<Entity>] = [:]
 }

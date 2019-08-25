@@ -8,24 +8,24 @@
 public extension Nexus
 {
     func makeEntity(with components: Component...) -> Entity {
-        let identifier = entityIDsPool.take()
+        let identifier = entityIdsPool.take()
         let entity = Entity(identifier: identifier)
         components.forEach { assign($0, to: entity) }
         return entity
     }
 
     func removeEntity(_ entity: Entity) {
-        assert(componentIDsByEntityID[entity.identifier] != nil)
+        assert(componentIdsByEntityId[entity.identifier] != nil)
 
-        entityIDsPool.free(entity.identifier)
+        entityIdsPool.free(entity.identifier)
 
-        for componentID in componentIDsByEntityID[entity.identifier] ?? [] {
-            componentsByComponentIDs[componentID]
+        for componentId in componentIdsByEntityId[entity.identifier] ?? [] {
+            componentsByComponentIds[componentId]
                 .unsafelyUnwrapped
                 .remove(for: entity.identifier.index)
         }
 
-        componentIDsByEntityID.removeValue(forKey: entity.identifier)
+        componentIdsByEntityId.removeValue(forKey: entity.identifier)
 
         for entities in entitiesByTraits.values {
             entities.remove(for: entity.identifier.index)
