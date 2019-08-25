@@ -7,6 +7,10 @@
 
 public extension Nexus
 {
+    var numberOfComponents: Int {
+        return componentsByComponentIDs.reduce(0) { $0 + $1.value.count }
+    }
+
     func assign(_ component: Component, to entity: Entity) {
         assert(componentsByComponentIDs[component.identifier]?.contains(entity.identifier.index) ?? false == false)
         assert(componentIDsByEntityID[entity.identifier]?.contains(component.identifier) ?? false == false)
@@ -21,8 +25,8 @@ public extension Nexus
     }
 
     func remove(_ component: Component.Type, from entity: Entity) {
-        assert(componentsByComponentIDs[component.identifier]?.contains(entity.identifier.index) ?? false == true)
-        assert(componentIDsByEntityID[entity.identifier]?.contains(component.identifier) ?? false == true)
+        assert(componentsByComponentIDs[component.identifier]?.contains(entity.identifier.index) ?? false)
+        assert(componentIDsByEntityID[entity.identifier]?.contains(component.identifier) ?? false)
 
         componentsByComponentIDs[component.identifier]?
             .remove(for: entity.identifier.index)
