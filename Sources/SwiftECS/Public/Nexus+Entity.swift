@@ -11,9 +11,8 @@ public extension Nexus
         return entityIds.count
     }
 
-    func makeEntity(with components: Component...) -> Entity {
+    func makeEntity(with components: Component...) -> EntityIdentifier {
         let identifier = entityIdsPool.take()
-        let entity = Entity(nexus: self, identifier: identifier)
 
         components.forEach {
             assign($0, to: identifier)
@@ -21,7 +20,7 @@ public extension Nexus
 
         entityIds.insert(identifier, at: identifier.index)
 
-        return entity
+        return identifier
     }
 
     func removeEntity(_ entityId: EntityIdentifier) {
@@ -40,9 +39,5 @@ public extension Nexus
         }
 
         componentIdsByEntityId.removeValue(forKey: entityId)
-
-        for entities in entityIdsByTraits.values {
-            entities.remove(at: entityId.index)
-        }
     }
 }

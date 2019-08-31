@@ -5,10 +5,10 @@
 //  Created by Roman Madyanov on 24/08/2019.
 //
 
-final class UnorderedSparseSet<Element>
+public final class UnorderedSparseSet<Element>
 {
-    typealias Index = Int
-    typealias Key = Int
+    public typealias Index = Int
+    public typealias Key = Int
 
     private(set) var elements: ContiguousArray<Element> = []
     private(set) var keys: [Key] = []
@@ -17,14 +17,14 @@ final class UnorderedSparseSet<Element>
 
     private let minimumCapacity: Int
 
-    init(minimumCapacity: Int = 0) {
+    public init(minimumCapacity: Int = 0) {
         self.minimumCapacity = minimumCapacity
 
         reserveCapacity(minimumCapacity)
     }
 }
 
-extension UnorderedSparseSet
+public extension UnorderedSparseSet
 {
     var capacity: Int { return indices.count }
     var count: Int { return elements.count }
@@ -78,7 +78,7 @@ extension UnorderedSparseSet
         return elements[index]
     }
 
-    func get(unsafeAt key: Key) -> Element {
+    func get(unsafe key: Key) -> Element {
         let index = search(key).unsafelyUnwrapped
         return elements[index]
     }

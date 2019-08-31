@@ -21,7 +21,7 @@ public extension Nexus
         componentIdsByEntityId[entityId, default: Set()]
             .insert(component.identifier)
 
-        updateTraitsMembership(of: entityId)
+        updateSystemsMembership(of: entityId)
     }
 
     func remove(_ component: Component.Type, from entityId: EntityIdentifier) {
@@ -34,7 +34,7 @@ public extension Nexus
         componentIdsByEntityId[entityId]?
             .remove(component.identifier)
 
-        updateTraitsMembership(of: entityId)
+        updateSystemsMembership(of: entityId)
     }
 
     func entity(_ entityId: EntityIdentifier, has component: Component.Type) -> Bool {
@@ -50,24 +50,32 @@ public extension Nexus
     func get<C: Component>(unsafe component: C.Type, of entityId: EntityIdentifier) -> C {
         let component = componentsByComponentIds[component.identifier]
             .unsafelyUnwrapped
-            .get(unsafeAt: entityId.index)
+            .get(unsafe: entityId.index)
 
         return unsafeDowncast(component, to: C.self)
+    }
+
+    func get<C: Component>(_ entityId: EntityIdentifier) -> C? {
+        return get(C.self, of: entityId)
+    }
+
+    func get<C: Component>(_ entityId: EntityIdentifier) -> C {
+        return get(unsafe: C.self, of: entityId)
     }
 }
 
 private extension Nexus
 {
-    func updateTraitsMembership(of entityId: EntityIdentifier) {
+    func updateSystemsMembership(of entityId: EntityIdentifier) {
         guard let components = componentIdsByEntityId[entityId] else {
             return
         }
 
-        entityIdsByTraits.forEach { traits, entities in
-            if traits.match(components) {
-                entities.insert(entityId, at: entityId.index)
+        systems.forEach { system in
+            if system.traits.contains(where: { $0.match(components) }) {
+                system.add(entityId)
             } else {
-                entities.remove(at: entityId.index)
+                system.remove(entityId)
             }
         }
     }

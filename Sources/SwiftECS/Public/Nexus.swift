@@ -11,5 +11,10 @@ public final class Nexus
     var entityIds = UnorderedSparseSet<EntityIdentifier>()
     var componentsByComponentIds: [ComponentIdentifier: UnorderedSparseSet<Component>] = [:]
     var componentIdsByEntityId: [EntityIdentifier: Set<ComponentIdentifier>] = [:]
-    var entityIdsByTraits: [ViewTraitSet: UnorderedSparseSet<EntityIdentifier>] = [:]
+
+    private let systems: [System]
+
+    public init(systems: [System]) {
+        self.systems = systems
+    }
 }

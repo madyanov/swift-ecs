@@ -1,11 +1,11 @@
 //
-//  ViewTraitSet.swift
+//  EntityTraitSet.swift
 //  SwiftECS
 //
 //  Created by Roman Madyanov on 24/08/2019.
 //
 
-public struct ViewTraitSet
+public struct EntityTraitSet
 {
     private let required: Set<ComponentIdentifier>
     private let excluded: Set<ComponentIdentifier>
@@ -18,7 +18,7 @@ public struct ViewTraitSet
     }
 }
 
-public extension ViewTraitSet
+public extension EntityTraitSet
 {
     func match(_ components: Set<ComponentIdentifier>) -> Bool {
         return required.isSubset(of: components)
@@ -26,4 +26,4 @@ public extension ViewTraitSet
     }
 }
 
-extension ViewTraitSet: Hashable { }
+extension EntityTraitSet: Hashable { }
