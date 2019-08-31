@@ -7,17 +7,17 @@
 
 public struct EntityIdentifier
 {
-    let index: Int
+    let key: Int
 
     init(_ index: UInt32 = 0) {
-        self.index = Int(index)
+        self.key = Int(index)
     }
 }
 
 extension EntityIdentifier: Identifiable
 {
     public var id: Int {
-        return index
+        return key
     }
 }
 

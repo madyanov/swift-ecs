@@ -12,11 +12,11 @@ public extension Nexus
     }
 
     func assign(_ component: Component, to entityId: EntityIdentifier) {
-        assert(componentsByComponentIds[component.id]?.contains(entityId.index) ?? false == false)
+        assert(componentsByComponentIds[component.id]?.contains(entityId.key) ?? false == false)
         assert(componentIdsByEntityId[entityId]?.contains(component.id) ?? false == false)
 
         componentsByComponentIds[component.id, default: UnorderedSparseSet()]
-            .insert(component, at: entityId.index)
+            .insert(component, at: entityId.key)
 
         componentIdsByEntityId[entityId, default: Set()]
             .insert(component.id)
@@ -25,11 +25,11 @@ public extension Nexus
     }
 
     func remove(_ component: Component.Type, from entityId: EntityIdentifier) {
-        assert(componentsByComponentIds[component.id]?.contains(entityId.index) ?? false)
+        assert(componentsByComponentIds[component.id]?.contains(entityId.key) ?? false)
         assert(componentIdsByEntityId[entityId]?.contains(component.id) ?? false)
 
         componentsByComponentIds[component.id]?
-            .remove(at: entityId.index)
+            .remove(at: entityId.key)
 
         componentIdsByEntityId[entityId]?
             .remove(component.id)
@@ -39,18 +39,18 @@ public extension Nexus
 
     func entity(_ entityId: EntityIdentifier, has component: Component.Type) -> Bool {
         return componentsByComponentIds[component.id]?
-            .contains(entityId.index) ?? false
+            .contains(entityId.key) ?? false
     }
 
     func get<C: Component>(_ component: C.Type, of entityId: EntityIdentifier) -> C? {
         return componentsByComponentIds[component.id]?
-            .get(at: entityId.index) as? C
+            .get(at: entityId.key) as? C
     }
 
     func get<C: Component>(unsafe component: C.Type, of entityId: EntityIdentifier) -> C {
         let component = componentsByComponentIds[component.id]
             .unsafelyUnwrapped
-            .get(unsafe: entityId.index)
+            .get(unsafe: entityId.key)
 
         return unsafeDowncast(component, to: C.self)
     }

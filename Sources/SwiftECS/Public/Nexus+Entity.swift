@@ -31,11 +31,11 @@ public extension Nexus
         entityIds.remove(entityId)
 
         for componentId in componentIdsByEntityId[entityId] ?? [] {
-            assert(componentsByComponentIds[componentId]?.contains(entityId.index) ?? false)
+            assert(componentsByComponentIds[componentId]?.contains(entityId.key) ?? false)
 
             componentsByComponentIds[componentId]
                 .unsafelyUnwrapped
-                .remove(at: entityId.index)
+                .remove(at: entityId.key)
         }
 
         componentIdsByEntityId.removeValue(forKey: entityId)

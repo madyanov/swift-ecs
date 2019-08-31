@@ -18,7 +18,7 @@ extension EntityIdentifiersPool
             return id
         }
 
-        defer { id = EntityIdentifier(UInt32(id.index + 1)) }
+        defer { id = EntityIdentifier(UInt32(id.key + 1)) }
         return id
     }
 
