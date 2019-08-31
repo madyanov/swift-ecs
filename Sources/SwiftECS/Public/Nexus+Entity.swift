@@ -18,17 +18,17 @@ public extension Nexus
             assign($0, to: identifier)
         }
 
-        entityIds.insert(identifier, at: identifier.index)
+        entityIds.insert(identifier)
 
         return identifier
     }
 
     func removeEntity(_ entityId: EntityIdentifier) {
-        assert(entityIds.contains(entityId.index))
+        assert(entityIds.contains(entityId))
         assert(componentIdsByEntityId[entityId] != nil)
 
         entityIdsPool.free(entityId)
-        entityIds.remove(at: entityId.index)
+        entityIds.remove(entityId)
 
         for componentId in componentIdsByEntityId[entityId] ?? [] {
             assert(componentsByComponentIds[componentId]?.contains(entityId.index) ?? false)
