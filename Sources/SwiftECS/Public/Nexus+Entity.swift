@@ -13,13 +13,8 @@ public extension Nexus
 
     func makeEntity(with components: Component...) -> EntityIdentifier {
         let identifier = entityIdsPool.take()
-
-        components.forEach {
-            assign($0, to: identifier)
-        }
-
+        components.forEach { assign($0, to: identifier) }
         entityIds.insert(identifier)
-
         return identifier
     }
 
