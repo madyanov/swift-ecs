@@ -7,26 +7,26 @@
 
 final class EntityIdentifiersPool
 {
-    private var identifier = EntityIdentifier()
-    private var freeIdentifiers: [EntityIdentifier] = []
+    private var id = EntityIdentifier()
+    private var freeIds: [EntityIdentifier] = []
 }
 
 extension EntityIdentifiersPool
 {
     func take() -> EntityIdentifier {
-        if let identifier = freeIdentifiers.popLast() {
-            return identifier
+        if let id = freeIds.popLast() {
+            return id
         }
 
-        defer { identifier = EntityIdentifier(UInt32(identifier.index + 1)) }
-        return identifier
+        defer { id = EntityIdentifier(UInt32(id.index + 1)) }
+        return id
     }
 
-    func free(_ identifier: EntityIdentifier) {
-        freeIdentifiers.append(identifier)
+    func free(_ id: EntityIdentifier) {
+        freeIds.append(id)
     }
 
     func flush() {
-        identifier = EntityIdentifier()
+        id = EntityIdentifier()
     }
 }

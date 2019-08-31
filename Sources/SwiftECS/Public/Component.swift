@@ -7,17 +7,17 @@
 
 public protocol Component: AnyObject
 {
-    var identifier: ComponentIdentifier { get }
-    static var identifier: ComponentIdentifier { get }
+    var id: ComponentIdentifier { get }
+    static var id: ComponentIdentifier { get }
 }
 
 public extension Component
 {
-    var identifier: ComponentIdentifier {
-        return Self.identifier
+    var id: ComponentIdentifier {
+        return Self.id
     }
 
-    static var identifier: ComponentIdentifier {
+    static var id: ComponentIdentifier {
         return ComponentIdentifier(Self.self)
     }
 }

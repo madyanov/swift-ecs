@@ -12,43 +12,43 @@ public extension Nexus
     }
 
     func assign(_ component: Component, to entityId: EntityIdentifier) {
-        assert(componentsByComponentIds[component.identifier]?.contains(entityId.index) ?? false == false)
-        assert(componentIdsByEntityId[entityId]?.contains(component.identifier) ?? false == false)
+        assert(componentsByComponentIds[component.id]?.contains(entityId.index) ?? false == false)
+        assert(componentIdsByEntityId[entityId]?.contains(component.id) ?? false == false)
 
-        componentsByComponentIds[component.identifier, default: UnorderedSparseSet()]
+        componentsByComponentIds[component.id, default: UnorderedSparseSet()]
             .insert(component, at: entityId.index)
 
         componentIdsByEntityId[entityId, default: Set()]
-            .insert(component.identifier)
+            .insert(component.id)
 
         updateSystemsMembership(of: entityId)
     }
 
     func remove(_ component: Component.Type, from entityId: EntityIdentifier) {
-        assert(componentsByComponentIds[component.identifier]?.contains(entityId.index) ?? false)
-        assert(componentIdsByEntityId[entityId]?.contains(component.identifier) ?? false)
+        assert(componentsByComponentIds[component.id]?.contains(entityId.index) ?? false)
+        assert(componentIdsByEntityId[entityId]?.contains(component.id) ?? false)
 
-        componentsByComponentIds[component.identifier]?
+        componentsByComponentIds[component.id]?
             .remove(at: entityId.index)
 
         componentIdsByEntityId[entityId]?
-            .remove(component.identifier)
+            .remove(component.id)
 
         updateSystemsMembership(of: entityId)
     }
 
     func entity(_ entityId: EntityIdentifier, has component: Component.Type) -> Bool {
-        return componentsByComponentIds[component.identifier]?
+        return componentsByComponentIds[component.id]?
             .contains(entityId.index) ?? false
     }
 
     func get<C: Component>(_ component: C.Type, of entityId: EntityIdentifier) -> C? {
-        return componentsByComponentIds[component.identifier]?
+        return componentsByComponentIds[component.id]?
             .get(at: entityId.index) as? C
     }
 
     func get<C: Component>(unsafe component: C.Type, of entityId: EntityIdentifier) -> C {
-        let component = componentsByComponentIds[component.identifier]
+        let component = componentsByComponentIds[component.id]
             .unsafelyUnwrapped
             .get(unsafe: entityId.index)
 
