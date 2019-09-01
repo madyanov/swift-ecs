@@ -1,3 +1,3 @@
 # SwiftECS
 
-A description of this package.
+ Simple [ECS](https://en.wikipedia.org/wiki/Entity_component_system) implementation in Swift.
