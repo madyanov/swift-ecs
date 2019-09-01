@@ -18,7 +18,7 @@ public struct EntityTraitSet
     }
 }
 
-public extension EntityTraitSet
+extension EntityTraitSet
 {
     func match(_ components: Set<ComponentIdentifier>) -> Bool {
         return required.isSubset(of: components)
