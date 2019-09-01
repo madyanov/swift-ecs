@@ -9,8 +9,8 @@ public struct EntityIdentifier
 {
     let key: Int
 
-    init(_ index: UInt32 = 0) {
-        self.key = Int(index)
+    init(_ key: UInt32 = 0) {
+        self.key = Int(key)
     }
 }
 
