@@ -93,6 +93,8 @@ public extension UnorderedSparseSet
         indices[keys[index]] = index
         indices[index] = nil
 
+        keys.removeLast()
+
         return elements.removeLast()
     }
 

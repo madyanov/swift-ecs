@@ -70,12 +70,12 @@ final class UnorderedSparseSetTests: XCTestCase
         let element1 = 42
         let element2 = 33
 
-        set.insert(element1)
-        set.insert(element2)
+        XCTAssertTrue(set.insert(element1))
+        XCTAssertTrue(set.insert(element2))
         XCTAssertEqual(set.count, 2)
 
-        set.insert(element1)
-        set.insert(element2)
+        XCTAssertFalse(set.insert(element1))
+        XCTAssertFalse(set.insert(element2))
         XCTAssertEqual(set.count, 2)
     }
 
@@ -99,6 +99,24 @@ final class UnorderedSparseSetTests: XCTestCase
         XCTAssertEqual(set.get(unsafe: 1), element2)
     }
 
+    func test_remove_method() {
+        let element1 = 42
+        let element2 = 33
+        let element3 = 777
+
+        set.insert(element1)
+        set.insert(element2)
+
+        XCTAssertEqual(set.remove(element1), 42)
+        XCTAssertEqual(set.count, 1)
+
+        XCTAssertEqual(set.remove(element2), 33)
+        XCTAssertEqual(set.count, 0)
+
+        XCTAssertNil(set.remove(element3))
+        XCTAssertEqual(set.count, 0)
+    }
+
     func test_removeAll_method() {
         let element1 = 42
         let element2 = 33
@@ -111,6 +129,20 @@ final class UnorderedSparseSetTests: XCTestCase
 
         set.removeAll()
         XCTAssertTrue(set.isEmpty)
+    }
+
+    func test_elements_and_keys_properties() {
+        let element1 = 42
+        let element2 = 33
+
+        set.insert(element1, at: 0)
+        set.insert(element2, at: 1)
+        XCTAssertEqual(set.elements, [42, 33])
+        XCTAssertEqual(set.keys, [0, 1])
+
+        set.remove(at: 0)
+        XCTAssertEqual(set.elements, [33])
+        XCTAssertEqual(set.keys, [1])
     }
 }
 
