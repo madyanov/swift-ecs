@@ -60,11 +60,11 @@ public extension Nexus
         return unsafeDowncast(component, to: C.self)
     }
 
-    func get<C: Component>(_ entityId: EntityIdentifier) -> C? {
+    func get<C: Component>(for entityId: EntityIdentifier) -> C? {
         return get(C.self, of: entityId)
     }
 
-    func get<C: Component>(_ entityId: EntityIdentifier) -> C {
+    func get<C: Component>(for entityId: EntityIdentifier) -> C {
         return get(unsafe: C.self, of: entityId)
     }
 }
