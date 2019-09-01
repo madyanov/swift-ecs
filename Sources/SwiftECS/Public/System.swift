@@ -8,7 +8,7 @@
 public protocol System: AnyObject
 {
     var nexus: Nexus { get set }
-    var traits: [EntityTraitSet] { get }
+    var traits: EntityTraitSet { get }
 
     func add(_ entityId: EntityIdentifier)
     func remove(_ entityId: EntityIdentifier)

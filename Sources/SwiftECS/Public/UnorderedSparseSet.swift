@@ -26,7 +26,6 @@ public final class UnorderedSparseSet<Element>
 
 public extension UnorderedSparseSet
 {
-    var capacity: Int { return indices.count }
     var count: Int { return elements.count }
     var isEmpty: Bool { return elements.isEmpty }
 
@@ -36,7 +35,7 @@ public extension UnorderedSparseSet
 
     func search(_ key: Key) -> Int? {
         guard
-            key < capacity,
+            key < indices.count,
             let index = indices[key],
             index < count,
             keys[index] == key
@@ -58,7 +57,7 @@ public extension UnorderedSparseSet
         }
 
         // allocate memory for sparse array if needed
-        if key >= capacity {
+        if key >= indices.count {
             reserveCapacity(key * 2 + 1)
         }
 
@@ -111,7 +110,7 @@ public extension UnorderedSparseSet
 private extension UnorderedSparseSet
 {
     func reserveCapacity(_ minimumCapacity: Int) {
-        guard minimumCapacity > capacity else {
+        guard minimumCapacity > indices.count else {
             return
         }
 

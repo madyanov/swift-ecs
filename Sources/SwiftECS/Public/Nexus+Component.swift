@@ -72,7 +72,7 @@ private extension Nexus
         }
 
         systems.forEach { system in
-            if system.traits.contains(where: { $0.match(components) }) {
+            if system.traits.match(components) {
                 system.add(entityId)
             } else {
                 system.remove(entityId)

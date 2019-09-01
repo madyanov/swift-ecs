@@ -16,5 +16,7 @@ public final class Nexus
 
     public init(systems: [System]) {
         self.systems = systems
+
+        systems.forEach { $0.nexus = self }
     }
 }
