@@ -13,6 +13,10 @@ final class EntityIdentifiersPool
 
 extension EntityIdentifiersPool
 {
+    var numberOfEntities: Int {
+        return id.key - freeIds.count
+    }
+
     func take() -> EntityIdentifier {
         if let id = freeIds.popLast() {
             return id
@@ -27,6 +31,7 @@ extension EntityIdentifiersPool
     }
 
     func flush() {
+        freeIds = []
         id = EntityIdentifier()
     }
 }
