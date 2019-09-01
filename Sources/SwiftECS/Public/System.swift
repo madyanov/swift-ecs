@@ -7,7 +7,7 @@
 
 public protocol System: AnyObject
 {
-    var nexus: Nexus { get set }
+    var nexus: Nexus! { get set }
     var traits: EntityTraitSet { get }
 
     func add(_ entityId: EntityIdentifier)
