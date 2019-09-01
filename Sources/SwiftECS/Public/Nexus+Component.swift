@@ -15,7 +15,12 @@ public extension Nexus
         assert(componentsByComponentIds[component.id]?.contains(entityId.key) ?? false == false)
         assert(componentIdsByEntityId[entityId]?.contains(component.id) ?? false == false)
 
-        componentsByComponentIds[component.id, default: UnorderedSparseSet()]
+        if componentsByComponentIds[component.id] == nil {
+            componentsByComponentIds[component.id] = UnorderedSparseSet()
+        }
+
+        componentsByComponentIds[component.id]
+            .unsafelyUnwrapped
             .insert(component, at: entityId.key)
 
         componentIdsByEntityId[entityId, default: Set()]

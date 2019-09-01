@@ -115,6 +115,9 @@ final class UnorderedSparseSetTests: XCTestCase
 
         XCTAssertNil(set.remove(element3))
         XCTAssertEqual(set.count, 0)
+
+        XCTAssertFalse(set.contains(element1))
+        XCTAssertFalse(set.contains(element2))
     }
 
     func test_removeAll_method() {
