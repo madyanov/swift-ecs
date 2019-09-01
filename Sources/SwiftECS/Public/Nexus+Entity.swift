@@ -20,7 +20,6 @@ public extension Nexus
 
     func removeEntity(_ entityId: EntityIdentifier) {
         assert(entityIds.contains(entityId))
-        assert(componentIdsByEntityId[entityId] != nil)
 
         entityIdsPool.free(entityId)
         entityIds.remove(entityId)
