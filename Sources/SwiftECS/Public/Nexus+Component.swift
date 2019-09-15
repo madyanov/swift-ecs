@@ -68,20 +68,3 @@ public extension Nexus
         return get(unsafe: C.self, of: entityId)
     }
 }
-
-private extension Nexus
-{
-    func updateSystemsMembership(of entityId: EntityIdentifier) {
-        guard let components = componentIdsByEntityId[entityId] else {
-            return
-        }
-
-        systems.forEach { system in
-            if system.traits.match(components) {
-                system.add(entityId)
-            } else {
-                system.remove(entityId)
-            }
-        }
-    }
-}

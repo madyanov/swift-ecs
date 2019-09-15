@@ -52,7 +52,7 @@ extension NexusTests {
     // to regenerate.
     static let __allTests__NexusTests = [
         ("test_nexus_setting", test_nexus_setting),
-        ("test_systems_filling", test_systems_filling),
+        ("test_systems_synchronization", test_systems_synchronization),
     ]
 }
 

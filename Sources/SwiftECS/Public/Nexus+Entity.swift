@@ -33,5 +33,7 @@ public extension Nexus
         }
 
         componentIdsByEntityId.removeValue(forKey: entityId)
+
+        updateSystemsMembership(of: entityId)
     }
 }

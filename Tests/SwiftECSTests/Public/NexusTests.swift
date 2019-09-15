@@ -18,7 +18,7 @@ final class NexusTests: XCTestCase
         XCTAssertTrue(movementSystem.nexus === nexus)
     }
 
-    func test_systems_filling() {
+    func test_systems_synchronization() {
         _ = nexus.makeEntity(with: Position())
         _ = nexus.makeEntity(with: Velocity())
         let entityId3 = nexus.makeEntity(with: Position(), Velocity())
@@ -30,6 +30,9 @@ final class NexusTests: XCTestCase
         nexus.remove(Position.self, from: entityId3)
         XCTAssertEqual(movementSystem.entities.count, 1)
         XCTAssertEqual(movementSystem.entities.elements, [entityId4])
+
+        nexus.removeEntity(entityId4)
+        XCTAssertTrue(movementSystem.entities.isEmpty)
     }
 }
 
