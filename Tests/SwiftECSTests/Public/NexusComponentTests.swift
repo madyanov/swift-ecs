@@ -70,6 +70,20 @@ final class NexusComponentTests: XCTestCase
         nexus.removeEntity(entityId2)
         XCTAssertEqual(nexus.numberOfComponents, 0)
     }
+
+    func test_component_replacing() {
+        let entityId = nexus.makeEntity()
+
+        nexus.assign(Position(x: 42, y: 33), to: entityId)
+        let position1: Position = nexus.get(for: entityId)
+        XCTAssertEqual(position1.x, 42)
+        XCTAssertEqual(position1.y, 33)
+
+        nexus.assign(Position(x: 43, y: 34), to: entityId)
+        let position2: Position = nexus.get(for: entityId)
+        XCTAssertEqual(position2.x, 43)
+        XCTAssertEqual(position2.y, 34)
+    }
 }
 
 private final class Position: Component

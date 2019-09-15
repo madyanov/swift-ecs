@@ -12,9 +12,6 @@ public extension Nexus
     }
 
     func assign(_ component: Component, to entityId: EntityIdentifier) {
-        assert(componentsByComponentIds[component.id]?.contains(entityId.key) ?? false == false)
-        assert(componentIdsByEntityId[entityId]?.contains(component.id) ?? false == false)
-
         if componentsByComponentIds[component.id] == nil {
             componentsByComponentIds[component.id] = UnorderedSparseSet()
         }
