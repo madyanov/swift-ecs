@@ -156,11 +156,9 @@ final class UnorderedSparseSetTests: XCTestCase
         set.insert(element1)
         set.insert(element2)
         set.insert(element3)
-
         XCTAssertEqual(set.map { $0 }, [42, 33, 777])
 
         set.remove(element2)
-
         XCTAssertEqual(set.map { $0 }, [42, 777])
     }
 }
