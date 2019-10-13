@@ -11,6 +11,8 @@ open class SparseSetBakedSystem: System
 
     public let entityIds = UnorderedSparseSet<EntityIdentifier>()
 
+    public init() {}
+
     public func add(_ entityId: EntityIdentifier) { entityIds.insert(entityId) }
     public func remove(_ entityId: EntityIdentifier) { entityIds.remove(entityId) }
 }

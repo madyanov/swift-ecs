@@ -12,7 +12,7 @@ public final class Nexus
     var componentsByComponentIds: [ComponentIdentifier: UnorderedSparseSet<Component>] = [:]
     var componentIdsByEntityId: [EntityIdentifier: Set<ComponentIdentifier>] = [:]
 
-    let systems: [System]
+    var systems: [System] = []
 
     public init(systems: [System]) {
         self.systems = systems

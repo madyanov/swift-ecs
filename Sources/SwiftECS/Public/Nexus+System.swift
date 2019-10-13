@@ -5,6 +5,13 @@
 //  Created by Roman Madyanov on 15/09/2019.
 //
 
+public extension Nexus
+{
+    func addSystem(_ system: System) {
+        systems.append(system)
+    }
+}
+
 extension Nexus
 {
     func updateSystemsMembership(of entityId: EntityIdentifier) {
