@@ -7,9 +7,7 @@
 
 public extension Nexus
 {
-    var numberOfEntities: Int {
-        return entityIds.count
-    }
+    var numberOfEntities: Int { entityIds.count }
 
     func makeEntity(with components: Component...) -> EntityIdentifier {
         let identifier = entityIdsPool.take()

@@ -7,9 +7,7 @@
 
 public extension Nexus
 {
-    var numberOfComponents: Int {
-        return componentsByComponentIds.reduce(0) { $0 + $1.value.count }
-    }
+    var numberOfComponents: Int { componentsByComponentIds.reduce(0) { $0 + $1.value.count } }
 
     func assign(_ component: Component, to entityId: EntityIdentifier) {
         if componentsByComponentIds[component.id] == nil {

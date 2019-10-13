@@ -151,7 +151,5 @@ final class UnorderedSparseSetTests: XCTestCase
 
 extension Int: Identifiable
 {
-    public var id: Int {
-        return self
-    }
+    public var id: Int { self }
 }

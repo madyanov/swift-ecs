@@ -13,11 +13,7 @@ public protocol Component: AnyObject
 
 public extension Component
 {
-    var id: ComponentIdentifier {
-        return Self.id
-    }
+    var id: ComponentIdentifier { Self.id }
 
-    static var id: ComponentIdentifier {
-        return ComponentIdentifier(Self.self)
-    }
+    static var id: ComponentIdentifier { ComponentIdentifier(Self.self) }
 }

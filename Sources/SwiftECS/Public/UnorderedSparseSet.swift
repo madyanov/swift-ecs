@@ -26,8 +26,8 @@ public final class UnorderedSparseSet<Element>
 
 public extension UnorderedSparseSet
 {
-    var count: Int { return elements.count }
-    var isEmpty: Bool { return elements.isEmpty }
+    var count: Int { elements.count }
+    var isEmpty: Bool { elements.isEmpty }
 
     func contains(_ key: Key) -> Bool {
         return search(key) != nil
@@ -112,10 +112,7 @@ public extension UnorderedSparseSet
 private extension UnorderedSparseSet
 {
     func reserveCapacity(_ minimumCapacity: Int) {
-        guard minimumCapacity > indices.count else {
-            return
-        }
-
+        guard minimumCapacity > indices.count else { return }
         indices.reserveCapacity(minimumCapacity, fill: nil)
     }
 }

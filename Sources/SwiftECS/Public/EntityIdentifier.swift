@@ -16,9 +16,7 @@ public struct EntityIdentifier
 
 extension EntityIdentifier: Identifiable
 {
-    public var id: Int {
-        return key
-    }
+    public var id: Int { key }
 }
 
 extension EntityIdentifier: Hashable { }
