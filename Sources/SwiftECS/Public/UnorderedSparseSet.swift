@@ -19,7 +19,6 @@ public final class UnorderedSparseSet<Element>
 
     public init(minimumCapacity: Int = 0) {
         self.minimumCapacity = minimumCapacity
-
         reserveCapacity(minimumCapacity)
     }
 }
@@ -114,7 +113,6 @@ extension UnorderedSparseSet: Sequence
 private extension UnorderedSparseSet
 {
     func reserveCapacity(_ minimumCapacity: Int) {
-        guard minimumCapacity > indices.count else { return }
         indices.reserveCapacity(minimumCapacity, fill: nil)
     }
 }
