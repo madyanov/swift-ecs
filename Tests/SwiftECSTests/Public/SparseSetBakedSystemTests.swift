@@ -36,12 +36,13 @@ final class SparseSetBakedSystemTests: XCTestCase
     }
 
     func test_component_removing_while_iterating() {
-        let _ = nexus.makeEntity(with: Position(), Velocity())
-        let _ = nexus.makeEntity(with: Position(), Velocity())
+        let entityId1 = nexus.makeEntity(with: Position(), Velocity())
+        let entityId2 = nexus.makeEntity(with: Position(), Velocity())
         XCTAssertEqual(movementSystem.entityIds.count, 2)
 
-        movementSystem.removeEntitiesWithPosition()
+        let entityIds = movementSystem.removeEntitiesWithPosition()
         XCTAssertEqual(movementSystem.entityIds.count, 0)
+        XCTAssertEqual(entityIds, [entityId1, entityId2])
     }
 }
 
@@ -49,8 +50,15 @@ private final class MovementSystem: SparseSetBakedSystem
 {
     override var traits: EntityTraitSet { EntityTraitSet(required: [Position.self, Velocity.self]) }
 
-    func removeEntitiesWithPosition() {
-        entityIds.forEach { nexus.remove(Position.self, from: $0) }
+    func removeEntitiesWithPosition() -> [EntityIdentifier] {
+        var resultEntityIds: [EntityIdentifier] = []
+
+        for entityId in entityIds {
+            resultEntityIds.append(entityId)
+            nexus.remove(Position.self, from: entityId)
+        }
+
+        return resultEntityIds
     }
 }
 
