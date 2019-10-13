@@ -13,11 +13,6 @@ final class NexusTests: XCTestCase
     private let movementSystem = MovementSystem()
     private lazy var nexus = Nexus(systems: [movementSystem])
 
-    func test_nexus_setting() {
-        _ = nexus // lazy initialization
-        XCTAssertTrue(movementSystem.nexus === nexus)
-    }
-
     func test_systems_synchronization() {
         _ = nexus.makeEntity(with: Position())
         _ = nexus.makeEntity(with: Velocity())
@@ -38,8 +33,6 @@ final class NexusTests: XCTestCase
 
 private final class MovementSystem: System
 {
-    unowned var nexus: Nexus!
-
     let traits = EntityTraitSet(required: [Position.self, Velocity.self])
     let entities = UnorderedSparseSet<EntityIdentifier>()
 
