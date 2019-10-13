@@ -10,10 +10,12 @@ import XCTest
 
 final class SparseSetBakedSystemTests: XCTestCase
 {
-    private let movementSystem = MovementSystem()
-    private lazy var nexus = Nexus(systems: [movementSystem])
+    private lazy var movementSystem = MovementSystem(nexus: nexus)
+    private lazy var nexus = Nexus()
 
     func test_systems_synchronization() {
+        nexus.addSystem(movementSystem)
+
         _ = nexus.makeEntity(with: Position())
         _ = nexus.makeEntity(with: Velocity())
         let entityId3 = nexus.makeEntity(with: Position(), Velocity())
