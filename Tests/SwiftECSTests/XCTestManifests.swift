@@ -61,6 +61,7 @@ extension SparseSetBakedSystemTests {
     //   `swift test --generate-linuxmain`
     // to regenerate.
     static let __allTests__SparseSetBakedSystemTests = [
+        ("test_component_removing_while_iterating", test_component_removing_while_iterating),
         ("test_systems_synchronization", test_systems_synchronization),
     ]
 }

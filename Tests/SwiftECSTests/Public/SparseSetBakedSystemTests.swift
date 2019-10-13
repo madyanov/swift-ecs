@@ -40,7 +40,7 @@ final class SparseSetBakedSystemTests: XCTestCase
         let entityId2 = nexus.makeEntity(with: Position(), Velocity())
         XCTAssertEqual(movementSystem.entityIds.count, 2)
 
-        let entityIds = movementSystem.removeEntitiesWithPosition()
+        let entityIds = movementSystem.removePositionComponent()
         XCTAssertEqual(movementSystem.entityIds.count, 0)
         XCTAssertEqual(entityIds, [entityId1, entityId2])
     }
@@ -50,7 +50,7 @@ private final class MovementSystem: SparseSetBakedSystem
 {
     override var traits: EntityTraitSet { EntityTraitSet(required: [Position.self, Velocity.self]) }
 
-    func removeEntitiesWithPosition() -> [EntityIdentifier] {
+    func removePositionComponent() -> [EntityIdentifier] {
         var resultEntityIds: [EntityIdentifier] = []
 
         for entityId in entityIds {
