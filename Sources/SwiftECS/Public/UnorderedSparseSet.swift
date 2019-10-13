@@ -109,6 +109,13 @@ public extension UnorderedSparseSet
     }
 }
 
+extension UnorderedSparseSet: Sequence
+{
+    public func makeIterator() -> IndexingIterator<ContiguousArray<Element>> {
+        return elements.makeIterator()
+    }
+}
+
 private extension UnorderedSparseSet
 {
     func reserveCapacity(_ minimumCapacity: Int) {

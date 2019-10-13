@@ -147,6 +147,22 @@ final class UnorderedSparseSetTests: XCTestCase
         XCTAssertEqual(set.elements, [33])
         XCTAssertEqual(set.keys, [1])
     }
+
+    func test_sequence_implementation() {
+        let element1 = 42
+        let element2 = 33
+        let element3 = 777
+
+        set.insert(element1)
+        set.insert(element2)
+        set.insert(element3)
+
+        XCTAssertEqual(set.map { $0 }, [42, 33, 777])
+
+        set.remove(element2)
+
+        XCTAssertEqual(set.map { $0 }, [42, 777])
+    }
 }
 
 extension Int: Identifiable
