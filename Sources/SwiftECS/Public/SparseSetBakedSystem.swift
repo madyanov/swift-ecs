@@ -17,6 +17,11 @@ open class SparseSetBakedSystem: System
         self.nexus = nexus
     }
 
-    public func add(_ entityId: EntityIdentifier) { entityIds.insert(entityId) }
-    public func remove(_ entityId: EntityIdentifier) { entityIds.remove(entityId) }
+    public func add(_ entityId: EntityIdentifier) {
+        entityIds.insert(entityId)
+    }
+
+    public func remove(_ entityId: EntityIdentifier) {
+        entityIds.remove(entityId)
+    }
 }

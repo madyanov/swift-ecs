@@ -19,29 +19,29 @@ final class NexusTests: XCTestCase
         let entityId3 = nexus.makeEntity(with: Position(), Velocity())
         let entityId4 = nexus.makeEntity(with: Position(), Velocity())
 
-        XCTAssertEqual(movementSystem.entities.count, 2)
-        XCTAssertEqual(movementSystem.entities.elements, [entityId3, entityId4])
+        XCTAssertEqual(movementSystem.entityIds.count, 2)
+        XCTAssertEqual(movementSystem.entityIds.elements, [entityId3, entityId4])
 
         nexus.remove(Position.self, from: entityId3)
-        XCTAssertEqual(movementSystem.entities.count, 1)
-        XCTAssertEqual(movementSystem.entities.elements, [entityId4])
+        XCTAssertEqual(movementSystem.entityIds.count, 1)
+        XCTAssertEqual(movementSystem.entityIds.elements, [entityId4])
 
         nexus.removeEntity(entityId4)
-        XCTAssertTrue(movementSystem.entities.isEmpty)
+        XCTAssertTrue(movementSystem.entityIds.isEmpty)
     }
 }
 
 private final class MovementSystem: System
 {
     let traits = EntityTraitSet(required: [Position.self, Velocity.self])
-    let entities = UnorderedSparseSet<EntityIdentifier>()
+    let entityIds = UnorderedSparseSet<EntityIdentifier>()
 
     func add(_ entityId: EntityIdentifier) {
-        entities.insert(entityId)
+        entityIds.insert(entityId)
     }
 
     func remove(_ entityId: EntityIdentifier) {
-        entities.remove(entityId)
+        entityIds.remove(entityId)
     }
 }
 
