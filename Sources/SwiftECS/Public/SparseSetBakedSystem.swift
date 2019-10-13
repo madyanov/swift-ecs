@@ -13,7 +13,7 @@ open class SparseSetBakedSystem: System
 
     public unowned let nexus: Nexus
 
-    init(nexus: Nexus) {
+    public init(nexus: Nexus) {
         self.nexus = nexus
     }
 
