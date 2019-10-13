@@ -70,10 +70,7 @@ public extension UnorderedSparseSet
     }
 
     func get(at key: Key) -> Element? {
-        guard let index = search(key) else {
-            return nil
-        }
-
+        guard let index = search(key) else { return nil }
         return elements[index]
     }
 
@@ -84,9 +81,7 @@ public extension UnorderedSparseSet
 
     @discardableResult
     func remove(at key: Key) -> Element? {
-        guard let index = search(key) else {
-            return nil
-        }
+        guard let index = search(key) else { return nil }
 
         elements.swapAt(index, elements.count - 1)
         keys.swapAt(index, keys.count - 1)
