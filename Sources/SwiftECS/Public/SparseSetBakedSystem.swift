@@ -11,7 +11,7 @@ open class SparseSetBakedSystem: System
 
     public let entityIds = UnorderedSparseSet<EntityIdentifier>()
 
-    public unowned var nexus: Nexus?
+    public unowned let nexus: Nexus
 
     init(nexus: Nexus) {
         self.nexus = nexus
