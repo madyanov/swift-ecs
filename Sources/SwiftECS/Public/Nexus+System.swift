@@ -7,8 +7,8 @@
 
 public extension Nexus
 {
-    func addSystem(_ system: System) {
-        systems.append(system)
+    func addSystems(_ systems: System...) {
+        self.systems += systems
     }
 }
 
