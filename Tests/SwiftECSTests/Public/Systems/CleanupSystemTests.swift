@@ -15,6 +15,7 @@ final class CleanupSystemSystemTests: XCTestCase
 
     override func setUp() {
         super.setUp()
+
         nexus.addSystems(cleanupSystem)
     }
 

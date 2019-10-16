@@ -19,6 +19,7 @@ public final class UnorderedSparseSet<Element>
 
     public init(minimumCapacity: Int = 0) {
         self.minimumCapacity = minimumCapacity
+
         reserveCapacity(minimumCapacity)
     }
 }

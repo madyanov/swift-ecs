@@ -8,6 +8,7 @@
 public protocol Component: AnyObject
 {
     var id: ComponentIdentifier { get }
+
     static var id: ComponentIdentifier { get }
 }
 
