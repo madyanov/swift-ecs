@@ -10,7 +10,7 @@ import XCTest
 
 final class NexusComponentTests: XCTestCase
 {
-    private let nexus = Nexus(systems: [])
+    private let nexus = Nexus()
 
     func test_has_method() {
         let entityId = nexus.makeEntity()

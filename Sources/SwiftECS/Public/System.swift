@@ -9,6 +9,7 @@ public protocol System: AnyObject
 {
     var traits: EntityTraitSet { get }
 
+    func has(_ entityId: EntityIdentifier) -> Bool
     func add(_ entityId: EntityIdentifier)
     func remove(_ entityId: EntityIdentifier)
 }

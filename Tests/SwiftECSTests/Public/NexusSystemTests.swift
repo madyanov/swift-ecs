@@ -1,5 +1,5 @@
 //
-//  NexusTests.swift
+//  NexusSystemTests.swift
 //  SwiftECSTests
 //
 //  Created by Roman Madyanov on 01/09/2019.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import SwiftECS
 
-final class NexusTests: XCTestCase
+final class NexusSystemTests: XCTestCase
 {
     private let movementSystem = MovementSystem()
     private lazy var nexus = Nexus(systems: [movementSystem])
@@ -29,12 +29,26 @@ final class NexusTests: XCTestCase
         nexus.removeEntity(entityId4)
         XCTAssertTrue(movementSystem.entityIds.isEmpty)
     }
+
+    func test_non_existing_entity_removing() {
+        let entityId = nexus.makeEntity(with: Position())
+        XCTAssertFalse(movementSystem.removeMethodCalled)
+
+        nexus.removeEntity(entityId)
+        XCTAssertFalse(movementSystem.removeMethodCalled)
+    }
 }
 
 private final class MovementSystem: System
 {
+    var removeMethodCalled = false
+
     let traits = EntityTraitSet(required: [Position.self, Velocity.self])
     let entityIds = UnorderedSparseSet<EntityIdentifier>()
+
+    func has(_ entityId: EntityIdentifier) -> Bool {
+        return entityIds.contains(entityId)
+    }
 
     func add(_ entityId: EntityIdentifier) {
         entityIds.insert(entityId)
@@ -42,6 +56,7 @@ private final class MovementSystem: System
 
     func remove(_ entityId: EntityIdentifier) {
         entityIds.remove(entityId)
+        removeMethodCalled = true
     }
 }
 

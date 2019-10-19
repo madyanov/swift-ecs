@@ -15,8 +15,7 @@ final class SparseSetBakedSystemTests: XCTestCase
 
     override func setUp() {
         super.setUp()
-
-        nexus.addSystems(movementSystem)
+        nexus.addSystem(movementSystem)
     }
 
     func test_systems_synchronization() {

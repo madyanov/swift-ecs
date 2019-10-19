@@ -15,8 +15,7 @@ final class CleanupSystemSystemTests: XCTestCase
 
     override func setUp() {
         super.setUp()
-
-        nexus.addSystems(cleanupSystem)
+        nexus.addSystem(cleanupSystem)
     }
 
     func test_entities_removing() {

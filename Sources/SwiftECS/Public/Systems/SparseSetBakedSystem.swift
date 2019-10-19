@@ -17,6 +17,10 @@ open class SparseSetBakedSystem: System
         self.nexus = nexus
     }
 
+    public func has(_ entityId: EntityIdentifier) -> Bool {
+        return entityIds.contains(entityId)
+    }
+
     public func add(_ entityId: EntityIdentifier) {
         entityIds.insert(entityId)
     }

@@ -7,7 +7,11 @@
 
 public extension Nexus
 {
-    func addSystems(_ systems: System...) {
+    func addSystem(_ system: System) {
+        addSystems([system])
+    }
+
+    func addSystems(_ systems: [System]) {
         self.systems += systems
     }
 }
@@ -18,10 +22,13 @@ extension Nexus
         let components = componentIdsByEntityId[entityId] ?? []
 
         systems.forEach { system in
-            if system.traits.match(components) {
-                system.add(entityId)
-            } else {
-                system.remove(entityId)
+            let has = system.has(entityId)
+            let matches = system.traits.match(components)
+
+            switch (has, matches) {
+            case (false, true): system.add(entityId)
+            case (true, false): system.remove(entityId)
+            default: break
             }
         }
     }
