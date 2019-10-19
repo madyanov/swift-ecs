@@ -46,7 +46,7 @@ final class SparseSetBakedSystemTests: XCTestCase
     }
 }
 
-private final class MovementSystem: SparseSetBakedSystem
+private final class MovementSystem: SparseSetBackedSystem
 {
     override var traits: EntityTraitSet { EntityTraitSet(required: [Position.self, Velocity.self]) }
 

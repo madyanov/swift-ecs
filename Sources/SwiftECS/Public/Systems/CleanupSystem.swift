@@ -5,7 +5,7 @@
 //  Created by Roman Madyanov on 16.10.2019.
 //
 
-public final class CleanupSystem<C: Component>: SparseSetBakedSystem
+public final class CleanupSystem<C: Component>: SparseSetBackedSystem
 {
     override public var traits: EntityTraitSet { EntityTraitSet(required: [C.self]) }
 

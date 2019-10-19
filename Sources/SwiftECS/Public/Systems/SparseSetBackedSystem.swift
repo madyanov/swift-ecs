@@ -1,11 +1,11 @@
 //
-//  SparseSetBakedSystem.swift
+//  SparseSetBackedSystem.swift
 //  SwiftECS
 //
 //  Created by Roman Madyanov on 13.10.2019.
 //
 
-open class SparseSetBakedSystem: System
+open class SparseSetBackedSystem: System
 {
     open var traits: EntityTraitSet { fatalError("not implemented") }
 
