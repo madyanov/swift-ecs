@@ -22,8 +22,8 @@ final class SparseSetBakedSystemTests: XCTestCase
     func test_systems_synchronization() {
         _ = nexus.makeEntity(with: Position())
         _ = nexus.makeEntity(with: Velocity())
-        let entityId3 = nexus.makeEntity(with: Position(), Velocity())
-        let entityId4 = nexus.makeEntity(with: Position(), Velocity())
+        let entityId3 = nexus.makeEntity(with: [Position(), Velocity()])
+        let entityId4 = nexus.makeEntity(with: [Position(), Velocity()])
 
         XCTAssertEqual(movementSystem.entityIds.count, 2)
         XCTAssertEqual(movementSystem.entityIds.elements, [entityId3, entityId4])
@@ -37,8 +37,8 @@ final class SparseSetBakedSystemTests: XCTestCase
     }
 
     func test_component_removing_while_iterating() {
-        let entityId1 = nexus.makeEntity(with: Position(), Velocity())
-        let entityId2 = nexus.makeEntity(with: Position(), Velocity())
+        let entityId1 = nexus.makeEntity(with: [Position(), Velocity()])
+        let entityId2 = nexus.makeEntity(with: [Position(), Velocity()])
         XCTAssertEqual(movementSystem.entityIds.count, 2)
 
         let entityIds = movementSystem.removePositionComponent()

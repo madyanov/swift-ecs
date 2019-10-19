@@ -58,7 +58,7 @@ final class NexusComponentTests: XCTestCase
         let entityId1 = nexus.makeEntity(with: Velocity())
         XCTAssertEqual(nexus.numberOfComponents, 1)
 
-        let entityId2 = nexus.makeEntity(with: Velocity(), Initiative())
+        let entityId2 = nexus.makeEntity(with: [Velocity(), Initiative()])
         XCTAssertEqual(nexus.numberOfComponents, 3)
 
         nexus.removeEntity(entityId1)

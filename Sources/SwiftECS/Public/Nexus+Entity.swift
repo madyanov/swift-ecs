@@ -9,7 +9,11 @@ public extension Nexus
 {
     var numberOfEntities: Int { entityIds.count }
 
-    func makeEntity(with components: Component...) -> EntityIdentifier {
+    func makeEntity(with component: Component) -> EntityIdentifier {
+        return makeEntity(with: [component])
+    }
+
+    func makeEntity(with components: [Component] = []) -> EntityIdentifier {
         let identifier = entityIdsPool.take()
         components.forEach { assign($0, to: identifier) }
         entityIds.insert(identifier)
