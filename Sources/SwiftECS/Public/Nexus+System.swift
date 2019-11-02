@@ -12,7 +12,7 @@ public extension Nexus
     }
 
     func addSystems(_ systems: [System]) {
-        self.systems += systems
+        self.systems += systems.map { ($0, $0.traits) }
     }
 }
 
@@ -21,9 +21,9 @@ extension Nexus
     func updateSystemsMembership(of entityId: EntityIdentifier) {
         let components = componentIdsByEntityId[entityId] ?? []
 
-        systems.forEach { system in
+        systems.forEach { system, traits in
             let contains = system.has(entityId)
-            let matches = system.traits.match(components)
+            let matches = traits.match(components)
 
             switch (contains, matches) {
             case (false, true): system.add(entityId)
