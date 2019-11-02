@@ -22,10 +22,10 @@ extension Nexus
         let components = componentIdsByEntityId[entityId] ?? []
 
         systems.forEach { system in
-            let has = system.has(entityId)
+            let contains = system.has(entityId)
             let matches = system.traits.match(components)
 
-            switch (has, matches) {
+            switch (contains, matches) {
             case (false, true): system.add(entityId)
             case (true, false): system.remove(entityId)
             default: break

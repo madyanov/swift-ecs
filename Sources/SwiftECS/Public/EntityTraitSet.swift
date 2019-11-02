@@ -10,11 +10,12 @@ public struct EntityTraitSet
     private let required: Set<ComponentIdentifier>
     private let excluded: Set<ComponentIdentifier>
 
-    public init(required: [Component.Type] = [], excluded: [Component.Type] = []) {
+    public init(required: [Component.Type], excluded: [Component.Type] = []) {
         self.required = Set(required.map { $0.id })
         self.excluded = Set(excluded.map { $0.id })
 
-        assert(!self.required.isEmpty && self.required.isDisjoint(with: self.excluded))
+        assert(!self.required.isEmpty)
+        assert(self.required.isDisjoint(with: self.excluded))
     }
 }
 
