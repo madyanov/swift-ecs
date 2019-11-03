@@ -11,7 +11,7 @@ public extension Nexus
 
     func assign(_ component: Component, to entityId: EntityIdentifier) {
         if componentsByComponentIds[component.id] == nil {
-            componentsByComponentIds[component.id] = UnorderedSparseSet()
+            componentsByComponentIds[component.id] = SparseSet()
         }
 
         componentsByComponentIds[component.id]

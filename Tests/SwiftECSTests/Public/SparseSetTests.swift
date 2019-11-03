@@ -1,5 +1,5 @@
 //
-//  UnorderedSparseSetTests.swift
+//  SparseSetTests.swift
 //  SwiftECSTests
 //
 //  Created by Roman Madyanov on 24/08/2019.
@@ -8,9 +8,9 @@
 import XCTest
 @testable import SwiftECS
 
-final class UnorderedSparseSetTests: XCTestCase
+final class SparseSetTests: XCTestCase
 {
-    private let set = UnorderedSparseSet<Int>()
+    private let set = SparseSet<Int>()
 
     func test_count_and_isEmpty_properties() {
         let element1 = 42

@@ -1,11 +1,11 @@
 //
-//  UnorderedSparseSet.swift
+//  SparseSet.swift
 //  SwiftECS
 //
 //  Created by Roman Madyanov on 24/08/2019.
 //
 
-public final class UnorderedSparseSet<Element>
+public final class SparseSet<Element>
 {
     public typealias Index = Int
     public typealias Key = Int
@@ -23,7 +23,7 @@ public final class UnorderedSparseSet<Element>
     }
 }
 
-public extension UnorderedSparseSet
+public extension SparseSet
 {
     var count: Int { elements.count }
     var isEmpty: Bool { elements.isEmpty }
@@ -103,14 +103,14 @@ public extension UnorderedSparseSet
     }
 }
 
-extension UnorderedSparseSet: Sequence
+extension SparseSet: Sequence
 {
     public func makeIterator() -> IndexingIterator<ContiguousArray<Element>> {
         return elements.makeIterator()
     }
 }
 
-private extension UnorderedSparseSet
+private extension SparseSet
 {
     func reserveCapacity(_ minimumCapacity: Int) {
         indices.reserveCapacity(minimumCapacity, fill: nil)

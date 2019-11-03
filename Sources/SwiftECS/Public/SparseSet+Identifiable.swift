@@ -1,11 +1,11 @@
 //
-//  UnorderedSparseSet+Identifiable.swift
+//  SparseSet+Identifiable.swift
 //  SwiftECS
 //
 //  Created by Roman Madyanov on 31/08/2019.
 //
 
-public extension UnorderedSparseSet where Element: Identifiable, Element.ID == Key
+public extension SparseSet where Element: Identifiable, Element.ID == Key
 {
     func contains(_ element: Element) -> Bool {
         return search(element) != nil

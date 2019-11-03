@@ -44,7 +44,7 @@ private final class MovementSystem: System
     var removeMethodCalled = false
 
     let traits = EntityTraitSet(required: [Position.self, Velocity.self])
-    let entityIds = UnorderedSparseSet<EntityIdentifier>()
+    let entityIds = SparseSet<EntityIdentifier>()
 
     func has(_ entityId: EntityIdentifier) -> Bool {
         return entityIds.contains(entityId)

@@ -9,7 +9,7 @@ open class SparseSetBackedSystem: System
 {
     open var traits: EntityTraitSet { fatalError("not implemented") }
 
-    public let entityIds = UnorderedSparseSet<EntityIdentifier>()
+    public let entityIds = SparseSet<EntityIdentifier>()
 
     public unowned let nexus: Nexus
 
