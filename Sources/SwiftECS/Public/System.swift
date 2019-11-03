@@ -12,4 +12,6 @@ public protocol System: AnyObject
     func has(_ entityId: EntityIdentifier) -> Bool
     func add(_ entityId: EntityIdentifier)
     func remove(_ entityId: EntityIdentifier)
+
+    func update()
 }

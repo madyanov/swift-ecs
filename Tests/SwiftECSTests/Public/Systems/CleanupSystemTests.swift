@@ -18,25 +18,12 @@ final class CleanupSystemSystemTests: XCTestCase
         nexus.addSystem(cleanupSystem)
     }
 
-    func test_entities_removing() {
-        let entityId1 = nexus.makeEntity(with: Position())
-        let entityId2 = nexus.makeEntity(with: Position())
-        let entityId3 = nexus.makeEntity(with: Velocity())
-
-        XCTAssertEqual(nexus.numberOfEntities, 3)
-        XCTAssertEqual(nexus.entityIds.elements, [entityId1, entityId2, entityId3])
-
-        cleanupSystem.removeEntities()
-        XCTAssertEqual(nexus.numberOfEntities, 1)
-        XCTAssertEqual(nexus.entityIds.elements, [entityId3])
-    }
-
     func test_component_removing() {
         let entityId1 = nexus.makeEntity(with: Position())
         let entityId2 = nexus.makeEntity(with: Position())
         let entityId3 = nexus.makeEntity(with: Velocity())
 
-        cleanupSystem.removeComponent()
+        nexus.update()
         XCTAssertFalse(nexus.entity(entityId1, has: Position.self))
         XCTAssertFalse(nexus.entity(entityId2, has: Position.self))
         XCTAssertTrue(nexus.entity(entityId3, has: Velocity.self))

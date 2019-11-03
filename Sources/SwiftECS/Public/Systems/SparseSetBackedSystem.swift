@@ -17,6 +17,10 @@ open class SparseSetBackedSystem: System
         self.nexus = nexus
     }
 
+    open func update() {
+        fatalError("not implemented")
+    }
+
     public func has(_ entityId: EntityIdentifier) -> Bool {
         return entityIds.contains(entityId)
     }

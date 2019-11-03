@@ -58,6 +58,8 @@ private final class MovementSystem: System
         entityIds.remove(entityId)
         removeMethodCalled = true
     }
+
+    func update() { }
 }
 
 private final class Position: Component { }

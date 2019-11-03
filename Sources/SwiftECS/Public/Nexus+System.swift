@@ -14,6 +14,10 @@ public extension Nexus
     func addSystems(_ systems: [System]) {
         self.systems += systems.map { ($0, $0.traits) }
     }
+
+    func update() {
+        systems.forEach { $0.system.update() }
+    }
 }
 
 extension Nexus

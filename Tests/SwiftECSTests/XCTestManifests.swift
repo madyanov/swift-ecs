@@ -7,7 +7,6 @@ extension CleanupSystemSystemTests {
     // to regenerate.
     static let __allTests__CleanupSystemSystemTests = [
         ("test_component_removing", test_component_removing),
-        ("test_entities_removing", test_entities_removing),
     ]
 }
 
