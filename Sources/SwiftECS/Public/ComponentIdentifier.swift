@@ -10,7 +10,7 @@ public struct ComponentIdentifier
     private let objectId: ObjectIdentifier
 
     init<T>(_ type: T.Type) where T: Component {
-        self.objectId = ObjectIdentifier(type)
+        objectId = ObjectIdentifier(type)
     }
 }
 

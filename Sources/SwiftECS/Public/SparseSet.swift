@@ -19,7 +19,7 @@ public final class SparseSet<Element>
 
     public init(minimumCapacity: Int = 0) {
         self.minimumCapacity = minimumCapacity
-        reserveCapacity(minimumCapacity)
+        self.reserveCapacity(minimumCapacity)
     }
 }
 
