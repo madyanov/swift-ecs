@@ -134,20 +134,6 @@ final class SparseSetTests: XCTestCase
         XCTAssertTrue(set.isEmpty)
     }
 
-    func test_removeAll_method_without_keeping_capacity() {
-        let element1 = 42
-        let element2 = 33
-
-        XCTAssertTrue(set.isEmpty)
-
-        set.insert(element1)
-        set.insert(element2)
-        XCTAssertFalse(set.isEmpty)
-
-        set.removeAll(keepingCapacity: false)
-        XCTAssertTrue(set.isEmpty)
-    }
-
     func test_elements_and_keys_properties() {
         let element1 = 42
         let element2 = 33

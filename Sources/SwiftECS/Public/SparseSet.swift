@@ -14,13 +14,6 @@ public final class SparseSet<Element>
     private(set) var keys: [Key] = []
 
     private var indices: [Index?] = []
-
-    private let minimumCapacity: Int
-
-    public init(minimumCapacity: Int = 0) {
-        self.minimumCapacity = minimumCapacity
-        self.reserveCapacity(minimumCapacity)
-    }
 }
 
 public extension SparseSet
@@ -51,7 +44,6 @@ public extension SparseSet
         if let index = search(key) {
             elements[index] = element
             keys[index] = key
-
             return false
         }
 
@@ -92,14 +84,10 @@ public extension SparseSet
         return elements.removeLast()
     }
 
-    func removeAll(keepingCapacity keepCapacity: Bool = true) {
-        elements.removeAll(keepingCapacity: keepCapacity)
-        keys.removeAll(keepingCapacity: keepCapacity)
-        indices.removeAll(keepingCapacity: keepCapacity)
-
-        if !keepCapacity {
-            reserveCapacity(minimumCapacity)
-        }
+    func removeAll() {
+        elements.removeAll()
+        keys.removeAll()
+        indices.removeAll()
     }
 }
 
@@ -112,15 +100,15 @@ extension SparseSet: Sequence
 
 private extension SparseSet
 {
-    func reserveCapacity(_ minimumCapacity: Int) {
-        indices.reserveCapacity(minimumCapacity, fill: nil)
+    func reserveCapacity(_ capacity: Int) {
+        indices.reserveCapacity(capacity, fill: nil)
     }
 }
 
 private extension Array
 {
-    mutating func reserveCapacity(_ minimumCapacity: Int, fill: Element) {
-        var array = [Element](repeating: fill, count: minimumCapacity)
+    mutating func reserveCapacity(_ capacity: Int, fill: Element) {
+        var array = [Element](repeating: fill, count: capacity)
 
         for index in 0..<count {
             array[index] = self[index]

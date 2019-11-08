@@ -88,7 +88,6 @@ extension SparseSetTests {
         ("test_insert_method", test_insert_method),
         ("test_remove_method", test_remove_method),
         ("test_removeAll_method", test_removeAll_method),
-        ("test_removeAll_method_without_keeping_capacity", test_removeAll_method_without_keeping_capacity),
         ("test_search_method", test_search_method),
         ("test_sequence_implementation", test_sequence_implementation),
     ]
