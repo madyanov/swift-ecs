@@ -26,10 +26,10 @@ extension EntityTraitSetTests {
     //   `swift test --generate-linuxmain`
     // to regenerate.
     static let __allTests__EntityTraitSetTests = [
-        ("test_match_one_excluded_method", test_match_one_excluded_method),
-        ("test_match_one_required_method", test_match_one_required_method),
-        ("test_match_two_excluded_method", test_match_two_excluded_method),
-        ("test_match_two_required_method", test_match_two_required_method),
+        ("test_matching_with_one_excluded_component", test_matching_with_one_excluded_component),
+        ("test_matching_with_one_required_component", test_matching_with_one_required_component),
+        ("test_matching_with_two_excluded_components", test_matching_with_two_excluded_components),
+        ("test_matching_with_two_required_components", test_matching_with_two_required_components),
     ]
 }
 

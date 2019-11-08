@@ -10,14 +10,14 @@ import XCTest
 
 final class EntityTraitSetTests: XCTestCase
 {
-    func test_match_one_required_method() {
+    func test_matching_with_one_required_component() {
         let traits = EntityTraitSet(required: [Position.self])
 
         XCTAssertFalse(traits.match([Velocity.id, Initiative.id]))
         XCTAssertTrue(traits.match([Velocity.id, Initiative.id, Position.id]))
     }
 
-    func test_match_two_required_method() {
+    func test_matching_with_two_required_components() {
         let traits = EntityTraitSet(required: [Position.self, Velocity.self])
 
         XCTAssertFalse(traits.match([Velocity.id, Initiative.id]))
@@ -26,7 +26,7 @@ final class EntityTraitSetTests: XCTestCase
         XCTAssertTrue(traits.match([Velocity.id, Position.id]))
     }
 
-    func test_match_one_excluded_method() {
+    func test_matching_with_one_excluded_component() {
         let traits = EntityTraitSet(required: [Position.self], excluded: [Initiative.self])
 
         XCTAssertFalse(traits.match([Velocity.id, Initiative.id]))
@@ -34,7 +34,7 @@ final class EntityTraitSetTests: XCTestCase
         XCTAssertTrue(traits.match([Velocity.id, Position.id]))
     }
 
-    func test_match_two_excluded_method() {
+    func test_matching_with_two_excluded_components() {
         let traits = EntityTraitSet(required: [Position.self], excluded: [Initiative.self, Velocity.self])
 
         XCTAssertFalse(traits.match([Velocity.id, Initiative.id]))
