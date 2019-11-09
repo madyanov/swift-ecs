@@ -17,7 +17,7 @@ final class NexusEntityTests: XCTestCase
         XCTAssertEqual(nexus.makeEntity().id, 1)
     }
 
-    func test_numberOfEntities_and_removeEntity_method() {
+    func test_numberOfEntities_property() {
         XCTAssertEqual(nexus.numberOfEntities, 0)
 
         let entityId1 = nexus.makeEntity()

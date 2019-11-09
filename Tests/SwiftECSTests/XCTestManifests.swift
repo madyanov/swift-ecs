@@ -52,7 +52,7 @@ extension NexusEntityTests {
     // to regenerate.
     static let __allTests__NexusEntityTests = [
         ("test_makeEntity_method", test_makeEntity_method),
-        ("test_numberOfEntities_and_removeEntity_method", test_numberOfEntities_and_removeEntity_method),
+        ("test_numberOfEntities_property", test_numberOfEntities_property),
     ]
 }
 
