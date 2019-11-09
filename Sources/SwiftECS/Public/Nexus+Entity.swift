@@ -27,9 +27,9 @@ public extension Nexus
         entityIds.remove(entityId)
 
         for componentId in componentIdsByEntityId[entityId] ?? [] {
-            assert(componentsByComponentIds[componentId]?.contains(entityId.key) ?? false)
+            assert(componentsByComponentId[componentId]?.contains(entityId.key) ?? false)
 
-            componentsByComponentIds[componentId]
+            componentsByComponentId[componentId]
                 .unsafelyUnwrapped
                 .remove(at: entityId.key)
         }

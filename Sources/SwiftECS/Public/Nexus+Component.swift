@@ -7,14 +7,14 @@
 
 public extension Nexus
 {
-    var numberOfComponents: Int { componentsByComponentIds.reduce(0) { $0 + $1.value.count } }
+    var numberOfComponents: Int { componentsByComponentId.reduce(0) { $0 + $1.value.count } }
 
     func assign(_ component: Component, to entityId: EntityIdentifier) {
-        if componentsByComponentIds[component.id] == nil {
-            componentsByComponentIds[component.id] = SparseSet()
+        if componentsByComponentId[component.id] == nil {
+            componentsByComponentId[component.id] = SparseSet()
         }
 
-        componentsByComponentIds[component.id]
+        componentsByComponentId[component.id]
             .unsafelyUnwrapped
             .insert(component, at: entityId.key)
 
@@ -25,10 +25,10 @@ public extension Nexus
     }
 
     func remove(_ component: Component.Type, from entityId: EntityIdentifier) {
-        assert(componentsByComponentIds[component.id]?.contains(entityId.key) ?? false)
+        assert(componentsByComponentId[component.id]?.contains(entityId.key) ?? false)
         assert(componentIdsByEntityId[entityId]?.contains(component.id) ?? false)
 
-        componentsByComponentIds[component.id]?
+        componentsByComponentId[component.id]?
             .remove(at: entityId.key)
 
         componentIdsByEntityId[entityId]?
@@ -38,17 +38,17 @@ public extension Nexus
     }
 
     func entity(_ entityId: EntityIdentifier, has component: Component.Type) -> Bool {
-        return componentsByComponentIds[component.id]?
+        return componentsByComponentId[component.id]?
             .contains(entityId.key) ?? false
     }
 
     func get<C: Component>(_ component: C.Type, of entityId: EntityIdentifier) -> C? {
-        return componentsByComponentIds[component.id]?
+        return componentsByComponentId[component.id]?
             .get(at: entityId.key) as? C
     }
 
     func get<C: Component>(unsafe component: C.Type, of entityId: EntityIdentifier) -> C {
-        let component = componentsByComponentIds[component.id]
+        let component = componentsByComponentId[component.id]
             .unsafelyUnwrapped
             .get(unsafe: entityId.key)
 
