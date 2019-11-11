@@ -51,14 +51,14 @@ private final class MovementSystem: SparseSetBackedSystem
     override var traits: EntityTraitSet { EntityTraitSet(required: [Position.self, Velocity.self]) }
 
     func removePositionComponent() -> [EntityIdentifier] {
-        var resultEntityIds: [EntityIdentifier] = []
+        var removedEntityIds: [EntityIdentifier] = []
 
         for entityId in entityIds {
-            resultEntityIds.append(entityId)
+            removedEntityIds.append(entityId)
             nexus.remove(Position.self, from: entityId)
         }
 
-        return resultEntityIds
+        return removedEntityIds
     }
 }
 
