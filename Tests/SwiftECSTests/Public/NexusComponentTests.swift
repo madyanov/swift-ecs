@@ -23,7 +23,7 @@ final class NexusComponentTests: XCTestCase
         XCTAssertFalse(nexus.entity(entityId, has: Velocity.self))
     }
 
-    func test_remove_method() {
+    func test_component_removing() {
         let entityId = nexus.makeEntity(with: Position(x: 42, y: 33))
 
         XCTAssertTrue(nexus.entity(entityId, has: Position.self))
@@ -32,7 +32,7 @@ final class NexusComponentTests: XCTestCase
         XCTAssertFalse(nexus.entity(entityId, has: Position.self))
     }
 
-    func test_get_method_and_component_changing() {
+    func test_get_method_and_component_updating() {
         let entityId = nexus.makeEntity()
 
         let position1: Position? = nexus.get(for: entityId)

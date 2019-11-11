@@ -18,7 +18,7 @@ final class SparseSetBakedSystemTests: XCTestCase
         nexus.addSystem(movementSystem)
     }
 
-    func test_systems_synchronization() {
+    func test_system_synchronization() {
         _ = nexus.makeEntity(with: Position())
         _ = nexus.makeEntity(with: Velocity())
         let entityId3 = nexus.makeEntity(with: [Position(), Velocity()])

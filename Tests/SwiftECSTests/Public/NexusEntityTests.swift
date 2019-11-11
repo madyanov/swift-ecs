@@ -12,7 +12,7 @@ final class NexusEntityTests: XCTestCase
 {
     private let nexus = Nexus()
 
-    func test_makeEntity_method() {
+    func test_entity_creation() {
         XCTAssertEqual(nexus.makeEntity().id, 0)
         XCTAssertEqual(nexus.makeEntity().id, 1)
     }

@@ -13,7 +13,7 @@ final class NexusSystemTests: XCTestCase
     private let movementSystem = MovementSystem()
     private lazy var nexus = Nexus(systems: [movementSystem])
 
-    func test_systems_synchronization() {
+    func test_system_synchronization() {
         _ = nexus.makeEntity(with: Position())
         _ = nexus.makeEntity(with: Velocity())
         let entityId3 = nexus.makeEntity(with: [Position(), Velocity()])

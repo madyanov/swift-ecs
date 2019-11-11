@@ -38,11 +38,11 @@ extension NexusComponentTests {
     //   `swift test --generate-linuxmain`
     // to regenerate.
     static let __allTests__NexusComponentTests = [
+        ("test_component_removing", test_component_removing),
         ("test_component_replacing", test_component_replacing),
-        ("test_get_method_and_component_changing", test_get_method_and_component_changing),
+        ("test_get_method_and_component_updating", test_get_method_and_component_updating),
         ("test_has_method", test_has_method),
         ("test_numberOfComponents_property", test_numberOfComponents_property),
-        ("test_remove_method", test_remove_method),
     ]
 }
 
@@ -51,7 +51,7 @@ extension NexusEntityTests {
     //   `swift test --generate-linuxmain`
     // to regenerate.
     static let __allTests__NexusEntityTests = [
-        ("test_makeEntity_method", test_makeEntity_method),
+        ("test_entity_creation", test_entity_creation),
         ("test_numberOfEntities_property", test_numberOfEntities_property),
     ]
 }
@@ -62,7 +62,7 @@ extension NexusSystemTests {
     // to regenerate.
     static let __allTests__NexusSystemTests = [
         ("test_non_existing_entity_removing", test_non_existing_entity_removing),
-        ("test_systems_synchronization", test_systems_synchronization),
+        ("test_system_synchronization", test_system_synchronization),
     ]
 }
 
@@ -72,7 +72,7 @@ extension SparseSetBakedSystemTests {
     // to regenerate.
     static let __allTests__SparseSetBakedSystemTests = [
         ("test_component_removing_while_iterating", test_component_removing_while_iterating),
-        ("test_systems_synchronization", test_systems_synchronization),
+        ("test_system_synchronization", test_system_synchronization),
     ]
 }
 
