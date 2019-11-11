@@ -9,8 +9,8 @@ public extension Nexus
 {
     var numberOfEntities: Int { entityIds.count }
 
-    func makeEntity(with component: Component) -> EntityIdentifier {
-        return makeEntity(with: [component])
+    func makeEntity(with components: Component...) -> EntityIdentifier {
+        return makeEntity(with: components)
     }
 
     func makeEntity(with components: [Component] = []) -> EntityIdentifier {
