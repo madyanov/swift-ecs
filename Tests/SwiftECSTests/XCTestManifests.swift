@@ -38,6 +38,7 @@ extension NexusComponentTests {
     //   `swift test --generate-linuxmain`
     // to regenerate.
     static let __allTests__NexusComponentTests = [
+        ("test_all_entity_components_fetching", test_all_entity_components_fetching),
         ("test_component_removing", test_component_removing),
         ("test_component_replacing", test_component_replacing),
         ("test_get_method_and_component_updating", test_get_method_and_component_updating),

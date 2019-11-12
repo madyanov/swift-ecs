@@ -84,6 +84,13 @@ final class NexusComponentTests: XCTestCase
         XCTAssertEqual(position2.x, 43)
         XCTAssertEqual(position2.y, 34)
     }
+
+    func test_all_entity_components_fetching() {
+        let entityId = nexus.makeEntity(with: [Position(x: 42, y: 33), Velocity(), Initiative()])
+
+        let components = nexus.components(of: entityId).map { "\($0)" }.sorted()
+        XCTAssertEqual(components, ["Initiative", "Position", "Velocity"])
+    }
 }
 
 private final class Position: Component

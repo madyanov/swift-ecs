@@ -42,16 +42,18 @@ public extension Nexus
             .contains(entityId.key) ?? false
     }
 
+    func components(of entityId: EntityIdentifier) -> [Component] {
+        return componentIdsByEntityId[entityId]?
+            .map { get(unsafe: $0, of: entityId) } ?? []
+    }
+
     func get<C: Component>(_ component: C.Type, of entityId: EntityIdentifier) -> C? {
         return componentsByComponentId[component.id]?
             .get(at: entityId.key) as? C
     }
 
     func get<C: Component>(unsafe component: C.Type, of entityId: EntityIdentifier) -> C {
-        let component = componentsByComponentId[component.id]
-            .unsafelyUnwrapped
-            .get(unsafe: entityId.key)
-
+        let component = get(unsafe: component.id, of: entityId)
         return unsafeDowncast(component, to: C.self)
     }
 
@@ -61,5 +63,14 @@ public extension Nexus
 
     func get<C: Component>(for entityId: EntityIdentifier) -> C {
         return get(unsafe: C.self, of: entityId)
+    }
+}
+
+private extension Nexus
+{
+    func get(unsafe componentId: ComponentIdentifier, of entityId: EntityIdentifier) -> Component {
+        return componentsByComponentId[componentId]
+            .unsafelyUnwrapped
+            .get(unsafe: entityId.key)
     }
 }
