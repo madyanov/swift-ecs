@@ -22,7 +22,7 @@ final class NexusSystemTests: XCTestCase
         XCTAssertEqual(movementSystem.entityIds.count, 2)
         XCTAssertEqual(movementSystem.entityIds.elements, [entityId3, entityId4])
 
-        nexus.remove(Position.self, from: entityId3)
+        nexus.remove(Position.self, of: entityId3)
         XCTAssertEqual(movementSystem.entityIds.count, 1)
         XCTAssertEqual(movementSystem.entityIds.elements, [entityId4])
 

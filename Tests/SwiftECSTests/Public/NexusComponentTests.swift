@@ -28,7 +28,7 @@ final class NexusComponentTests: XCTestCase
 
         XCTAssertTrue(nexus.entity(entityId, has: Position.self))
 
-        nexus.remove(Position.self, from: entityId)
+        nexus.remove(Position.self, of: entityId)
         XCTAssertFalse(nexus.entity(entityId, has: Position.self))
     }
 
@@ -64,7 +64,7 @@ final class NexusComponentTests: XCTestCase
         nexus.removeEntity(entityId1)
         XCTAssertEqual(nexus.numberOfComponents, 2)
 
-        nexus.remove(Velocity.self, from: entityId2)
+        nexus.remove(Velocity.self, of: entityId2)
         XCTAssertEqual(nexus.numberOfComponents, 1)
 
         nexus.removeEntity(entityId2)

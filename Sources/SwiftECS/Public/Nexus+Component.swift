@@ -24,7 +24,7 @@ public extension Nexus
         updateSystemsMembership(of: entityId)
     }
 
-    func remove(_ component: Component.Type, from entityId: EntityIdentifier) {
+    func remove(_ component: Component.Type, of entityId: EntityIdentifier) {
         assert(componentsByComponentId[component.id]?.contains(entityId.key) ?? false)
         assert(componentIdsByEntityId[entityId]?.contains(component.id) ?? false)
 
