@@ -25,7 +25,7 @@ public extension SparseSet
         return search(key) != nil
     }
 
-    func search(_ key: Key) -> Int? {
+    func search(_ key: Key) -> Index? {
         guard
             key < indices.count,
             let index = indices[key],
