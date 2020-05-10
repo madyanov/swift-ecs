@@ -38,4 +38,15 @@ public extension Nexus
 
         updateSystemsMembership(of: entityId)
     }
+
+    func removeAllEntities() {
+        for entityId in entityIds {
+            systems.forEach { $0.system.remove(entityId) }
+        }
+
+        entityIdsPool.flush()
+        entityIds.removeAll()
+        componentsByComponentId.removeAll()
+        componentIdsByEntityId.removeAll()
+    }
 }
