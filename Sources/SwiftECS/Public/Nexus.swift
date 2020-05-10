@@ -12,8 +12,4 @@ public final class Nexus
     var componentsByComponentId: [ComponentIdentifier: SparseSet<Component>] = [:]
     var componentIdsByEntityId: [EntityIdentifier: Set<ComponentIdentifier>] = [:]
     var systems: [(system: System, traits: EntityTraitSet)] = []
-
-    public init(systems: [System] = []) {
-        addSystems(systems)
-    }
 }

@@ -7,6 +7,11 @@
 
 public extension Nexus
 {
+    convenience init(systems: [System] = []) {
+        self.init()
+        addSystems(systems)
+    }
+
     func addSystem(_ system: System) {
         addSystems([system])
     }
